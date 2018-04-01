@@ -1,10 +1,8 @@
 FROM anthonykgross/docker-base:latest
 
-MAINTAINER Anthony K GROSS
-
 RUN echo "deb http://ftp.uk.debian.org/debian jessie-backports main" >> /etc/apt/sources.list && \
     apt-get update -y && \
-	apt-get upgrade -y && \
+	#apt-get upgrade -y && \
 	apt-get install -y supervisor wget && \
     apt-get install -y git gcc make libpcre3-dev libssl-dev ffmpeg && \
     rm -rf /var/lib/apt/lists/* && apt-get autoremove -y --purge
