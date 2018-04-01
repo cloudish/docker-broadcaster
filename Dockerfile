@@ -1,6 +1,6 @@
 FROM anthonykgross/docker-base:latest
 
-RUN echo "deb http://www.debian.org/debian jessie-backports main" >> /etc/apt/sources.list && \
+RUN echo "deb http://ftp.debian.org/debian jessie-backports main" >> /etc/apt/sources.list && \
     apt-get update -y && \
 	apt-get upgrade -y && \
 	apt-get update -y && \
