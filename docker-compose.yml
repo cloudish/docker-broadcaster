@@ -1,6 +1,8 @@
 broadcaster:
   image: anthonykgross/docker-broadcaster
-#  environment:
+ environment:
+  TRANSCODE_SERVERS_JSON: '[{"url":"rtmp://live-ord.twitch.tv/app", "12345"}]'
+  PASSTHROUGH_SERVERS_JSON: '[{"url":"rtmp://a.rtmp.youtube.com/live2", "12345"}]'
 #    YOUTUBE_URL: rtmp://a.rtmp.youtube.com/live2
 #    YOUTUBE_STREAMKEY: "NULL"
 #    TWITCH_URL: rtmp://live-cdg.twitch.tv/app

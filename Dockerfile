@@ -2,38 +2,25 @@ FROM anthonykgross/docker-base:latest
 
 RUN echo "deb http://http.us.debian.org/debian stable main contrib non-free" >> /etc/apt/sources.list && \
     apt-get update -y && \
-	apt-get install apt-utils -y && \
+	apt-get upgrade -y && \
+	apt-get install -y jq && \
 	apt-get install -y supervisor wget && \
     apt-get install -y git gcc make libpcre3-dev libssl-dev ffmpeg && \
     rm -rf /var/lib/apt/lists/* && apt-get autoremove -y --purge
 
-ENV YOUTUBE_URL rtmp://a.rtmp.youtube.com/live2
-ENV YOUTUBE_STREAMKEY NULL
-
-ENV TWITCH_URL rtmp://live-cdg.twitch.tv/app
-ENV TWITCH_STREAMKEY NULL
-
-ENV HITBOX_URL rtmp://live.hitbox.tv/push
-ENV HITBOX_STREAMKEY NULL
-
-ENV DAILYMOTION_URL rtmp://publish.dailymotion.com/publish-dm
-ENV DAILYMOTION_STREAMKEY NULL
-
-ENV LIVECODING_URL rtmp://eumedia1.livecoding.tv:1935/livecodingtv
-ENV LIVECODING_STREAMKEY NULL
-
 ENV YOUR_IP YOUR_IP
-ENV PRIVATE_KEY anthonykgross
+ENV PRIVATE_KEY changethispassword
 ENV STREAM_SPECIFIER hd720
 ENV URL_TRANSCODE transcode
 ENV URL_LIVE live
-ENV EXPIRATION_TOKEN 3600
-
-ENV FPS 30
-ENV KEY_INTERVAL 60
-ENV BITRATE 2000
-ENV X264_PRESET medium
-
+ENV EXPIRATION_TOKEN 31536000
+ENV TRANSCODE_SERVERS_JSON "[]"
+ENV PASSTHROUGH_SERVERS_JSON "[]"
+ENV FPS 60
+ENV KEY_INTERVAL 120
+ENV BITRATE 3500
+ENV X264_PRESET veryfast
+ENV CHUNK_SIZE 4096
 
 RUN mkdir -p /conf && \
     mkdir -p /log && \
