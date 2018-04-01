@@ -5,6 +5,13 @@ source ~/.bash_profile
 
 run() {
     sed -i -e "s,<url_transcode>,$URL_TRANSCODE,g" /usr/local/nginx-streaming/conf/nginx.conf
+
+    sed -i -e "s,-r 30,-r $FPS,g" /usr/local/nginx-streaming/conf/nginx.conf
+    sed -i -e "s,-preset medium,-preset $X264_PRESET,g" /usr/local/nginx-streaming/conf/nginx.conf
+    sed -i -e "s,2000k,$BITRATE,g" /usr/local/nginx-streaming/conf/nginx.conf
+    sed -i -e "s,keyint=60,keyint=$KEY_INTERVAL,g" /usr/local/nginx-streaming/conf/nginx.conf
+    
+
     sed -i -e "s,<url_live>,$URL_LIVE,g" /usr/local/nginx-streaming/conf/nginx.conf
     sed -i -e "s,<stream_specifier>,$STREAM_SPECIFIER,g" /usr/local/nginx-streaming/conf/nginx.conf
     sed -i -e "s,<private_key>,$PRIVATE_KEY,g" /usr/local/nginx-streaming/conf/nginx.conf
