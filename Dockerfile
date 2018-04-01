@@ -2,7 +2,7 @@ FROM anthonykgross/docker-base:latest
 
 RUN echo "deb http://ftp.uk.debian.org/debian jessie-backports main" >> /etc/apt/sources.list && \
     apt-get update -y && \
-	#apt-get upgrade -y && \
+	apt-get install apt-utils -y && \
 	apt-get install -y supervisor wget && \
     apt-get install -y git gcc make libpcre3-dev libssl-dev ffmpeg && \
     rm -rf /var/lib/apt/lists/* && apt-get autoremove -y --purge
@@ -29,10 +29,10 @@ ENV URL_TRANSCODE transcode
 ENV URL_LIVE live
 ENV EXPIRATION_TOKEN 3600
 
-ENV FPS 60
-ENV KEY_INTERVAL 120
-ENV BITRATE 3500
-ENV X264_PRESET veryfast
+ENV FPS 30
+ENV KEY_INTERVAL 60
+ENV BITRATE 2000
+ENV X264_PRESET medium
 
 
 RUN mkdir -p /conf && \
