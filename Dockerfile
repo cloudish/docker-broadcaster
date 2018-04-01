@@ -1,6 +1,6 @@
 FROM anthonykgross/docker-base:latest
 
-RUN echo "deb http://ftp.uk.debian.org/debian jessie-backports main" >> /etc/apt/sources.list && \
+RUN echo "deb http://deb.debian.org/debian jessie stable" >> /etc/apt/sources.list && \
     apt-get update -y && \
 	apt-get install apt-utils -y && \
 	apt-get install -y supervisor wget && \
