@@ -1,8 +1,10 @@
 FROM anthonykgross/docker-base:latest
 
-RUN echo "deb http://ftp.uk.debian.org/debian jessie-backports main" >> /etc/apt/sources.list && \
+RUN echo "deb http://www.debian.org/debian jessie-backports main" >> /etc/apt/sources.list && \
     apt-get update -y && \
 	apt-get upgrade -y && \
+	apt-get update -y && \
+	apt-get install -y jq && \
 	apt-get install -y supervisor wget && \
     apt-get install -y git gcc make libpcre3-dev libssl-dev ffmpeg && \
     rm -rf /var/lib/apt/lists/* && apt-get autoremove -y --purge
@@ -13,8 +15,8 @@ ENV STREAM_SPECIFIER hd720
 ENV URL_TRANSCODE transcode
 ENV URL_LIVE live
 ENV EXPIRATION_TOKEN 31536000
-ENV TRANSCODE_SERVERS_JSON "[]"
-ENV PASSTHROUGH_SERVERS_JSON "[]"
+ENV TRANSCODE_SERVERS_JSON "[{"url":"rtmp://live-ord.twitch.tv/app", "key":"insert_key_here"},{"url":"rtmp://ingest-wdc.mixer.com:1935/beam","key":"insert-key-here"}]"
+ENV PASSTHROUGH_SERVERS_JSON "[{"url":"rtmp://a.rtmp.youtube.com/live2", "key":"insert_key_here"}]"
 ENV FPS 60
 ENV KEY_INTERVAL 120
 ENV BITRATE 3500

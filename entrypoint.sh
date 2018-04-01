@@ -17,13 +17,17 @@ run() {
 
     #iterate through the json representing the servers and build out exec text, then inject
     pushes=""
-    for row in $(echo "${SERVERS_JSON}" | jq -r '.[] | @base64'); do
+    echo "${TRANSCODE_SERVERS_JSON}"
+	echo "${PASSTHROUGH_SERVERS_JSON}"
+    for row in $(echo "${TRANSCODE_SERVERS_JSON}" | jq -r '.[] | @base64'); do
         _jq() {
             echo ${row} | base64 --decode | jq -r ${1}
         }
 
         pushes+="exec_push $(_jq '.url') playpath=$(_jq '.key') name=degraded_quality;\n"
+        echo ${pushes}
     done
+    echo ${pushes}
     sed -i -e "s,<transcoded_stream_array>,${pushes},g" /usr/local/nginx-streaming/conf/nginx.conf
 
     #handle the expiration
