@@ -1,7 +1,6 @@
 FROM anthonykgross/docker-base:latest
 
-RUN echo "deb http://deb.debian.org/debian jessie stable" >> /etc/apt/sources.list && \
-    apt-get update -y && \
+RUN apt-get update -y && \
 	apt-get install apt-utils -y && \
 	apt-get install -y supervisor wget && \
     apt-get install -y git gcc make libpcre3-dev libssl-dev ffmpeg && \
