@@ -1,9 +1,8 @@
 FROM anthonykgross/docker-base:latest
 
-RUN echo "deb http://http.us.debian.org/debian stable main contrib non-free" >> /etc/apt/sources.list && \
+RUN echo "deb http://ftp.uk.debian.org/debian jessie-backports main" >> /etc/apt/sources.list && \
     apt-get update -y && \
 	apt-get upgrade -y && \
-	apt-get install -y jq && \
 	apt-get install -y supervisor wget && \
     apt-get install -y git gcc make libpcre3-dev libssl-dev ffmpeg && \
     rm -rf /var/lib/apt/lists/* && apt-get autoremove -y --purge
