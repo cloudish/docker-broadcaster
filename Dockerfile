@@ -31,6 +31,12 @@ ENV URL_TRANSCODE transcode
 ENV URL_LIVE live
 ENV EXPIRATION_TOKEN 3600
 
+ENV FPS 60
+ENV KEY_INTERVAL 120
+ENV BITRATE 3500
+ENV X264_PRESET veryfast
+
+
 RUN mkdir -p /conf && \
     mkdir -p /log && \
     chmod 777 /log -Rf  && \
