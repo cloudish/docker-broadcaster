@@ -1,6 +1,7 @@
 FROM anthonykgross/docker-base:latest
 
-RUN apt-get update -y && \
+RUN echo "deb http://http.us.debian.org/debian stable main contrib non-free" >> /etc/apt/sources.list && \
+    apt-get update -y && \
 	apt-get install apt-utils -y && \
 	apt-get install -y supervisor wget && \
     apt-get install -y git gcc make libpcre3-dev libssl-dev ffmpeg && \
